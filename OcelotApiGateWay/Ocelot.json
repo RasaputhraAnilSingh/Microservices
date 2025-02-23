@@ -1,0 +1,88 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7224"
+  },
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/gateway/Product/getAllWriters",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/Product/getAllWriters",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localHost",
+          "Port": 7088
+        }
+      ],
+      "RateLimitOptions": {
+        "EnableRateLimiting": true,
+        "Period": "10s",
+        "Limit": 3,
+        "PeriodTimespan": 10
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Product/getWriterById/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/Product/getWriterById/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localHost",
+          "Port": 7088
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Product/deleteWriterById/{id}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "DownstreamPathTemplate": "/api/Product/deleteWriterById/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localHost",
+          "Port": 7088
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Order/getAllArticles",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/Order/getAllArticles",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localHost",
+          "Port": 7246
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Order/getArticleById/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/Order/getArticleById/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localHost",
+          "Port": 7246
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/auth/login",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/auth/login",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7245
+        }
+      ]
+    }
+  ]
+}
