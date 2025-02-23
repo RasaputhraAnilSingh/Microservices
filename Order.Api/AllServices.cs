@@ -1,7 +1,9 @@
-﻿using Article.Api.Repository;
-using Article.Api.Repository.Interface;
+﻿
 
-namespace Article.Api
+using Order.Infrastructure.Repositories;
+using Order.Infrastructure.Repositories.Interfaces;
+
+namespace Order.Api
 {
     public static class AllServices
     {

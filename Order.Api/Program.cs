@@ -1,5 +1,5 @@
 
-using Article.Api;
+using Order.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 

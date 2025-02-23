@@ -1,33 +1,33 @@
-using Article.Api.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Order.Infrastructure.Repositories.Interfaces;
 
-namespace Article.Api.Controllers
+namespace Order.Api.Controllers
 {
     [Route("/api/[controller]")]
     [ApiController]
     public class OrderController : ControllerBase
     {
-       private readonly IOrderRepository _articleRepository;
-        public OrderController(IOrderRepository articleRepository) 
-        { 
-            _articleRepository = articleRepository;        
+       private readonly IOrderRepository _orderRepository;
+        public OrderController(IOrderRepository orderRepository) 
+        {
+            _orderRepository = orderRepository;        
         }
         [HttpGet("getAllOrders")]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return Ok(_articleRepository.getAllOrders());
+            return Ok(await _orderRepository.GetAllOrdersAsync());
         }
 
         [HttpGet("getOrderById/{id}")]
-        public IActionResult GetbyID(int id)
+        public async Task<IActionResult> GetbyID(int id)
         {
-            return Ok(_articleRepository.getOrderById(id));
+            return Ok(await _orderRepository.GetOrderByIdAsync(id));
         }
 
         [HttpDelete("deleteOrderById/{id}")]
-        public IActionResult delete(int id)
+        public async Task<IActionResult> delete(int id)
         {
-            return Ok(_articleRepository.deleteOrderById(id));
+            return Ok(await _orderRepository.DeleteOrderByIdAsync(id));
         }
     }
 }

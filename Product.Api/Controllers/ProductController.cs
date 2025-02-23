@@ -1,34 +1,33 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Writer.Api.Repository.Interface;
+using Product.Infrastructure.Repositories.Interfaces;
 
-namespace Writer.Api.Controllers
+namespace Product.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly IProductRepository _writerRepository;
-        public ProductController(IProductRepository writerRepository)
+        private readonly IProductRepository _productRepository;
+        public ProductController(IProductRepository productRepository)
         {
-            _writerRepository = writerRepository;
+            _productRepository = productRepository;
         }
         [HttpGet("getAllProducts")]
-        public IActionResult Get()
+        public async Task<IActionResult> GetAll()
         {
-            return Ok(_writerRepository.getAllProducts());
+            return Ok(await _productRepository.GetAllProductsAsync());
         }
 
         [HttpGet("getProductById/{id}")]
-        public IActionResult GetbyID(int id)
+        public async Task<IActionResult> GetbyID(int id)
         {
-            return Ok(_writerRepository.getProductById(id));
+            return Ok(await _productRepository.GetProductByIdAsync(id));
         }
 
         [HttpDelete("deleteProductById/{id}")]
-        public IActionResult delete(int id)
+        public async Task<IActionResult> delete(int id)
         {
-            return Ok(_writerRepository.deleteProductById(id));
+            return Ok(await _productRepository.DeleteProductByIdAsync(id));
         }
     }
 

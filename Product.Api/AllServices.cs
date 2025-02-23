@@ -1,8 +1,10 @@
 ﻿
-using Writer.Api.Repository;
-using Writer.Api.Repository.Interface;
 
-namespace Article.Api
+using Product.Infrastructure.Repositories;
+using Product.Infrastructure.Repositories.Interfaces;
+
+
+namespace Order.Api
 {
     public static class AllServices
     {

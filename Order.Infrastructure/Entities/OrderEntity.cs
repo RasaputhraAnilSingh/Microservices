@@ -1,6 +1,8 @@
-﻿namespace Article.Api.Model
+﻿
+
+namespace Order.Infrastructure.Entities
 {
-    public class OrderModel
+    public class OrderEntity
     {
         public int Id { get; set; }
         public string Title { get; set; }
