@@ -13,22 +13,22 @@ namespace Writer.Api.Controllers
         {
             _writerRepository = writerRepository;
         }
-        [HttpGet("getAllWriters")]
+        [HttpGet("getAllProducts")]
         public IActionResult Get()
         {
-            return Ok(_writerRepository.getAllWriter());
+            return Ok(_writerRepository.getAllProducts());
         }
 
-        [HttpGet("getWriterById/{id}")]
+        [HttpGet("getProductById/{id}")]
         public IActionResult GetbyID(int id)
         {
-            return Ok(_writerRepository.getWriterById(id));
+            return Ok(_writerRepository.getProductById(id));
         }
 
-        [HttpDelete("deleteWriterById/{id}")]
+        [HttpDelete("deleteProductById/{id}")]
         public IActionResult delete(int id)
         {
-            return Ok(_writerRepository.deleteWriterById(id));
+            return Ok(_writerRepository.deleteProductById(id));
         }
     }
 

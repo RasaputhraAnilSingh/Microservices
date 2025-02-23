@@ -18,18 +18,18 @@ namespace Article.Api.Repository
 
         }
 
-        public bool deleteArticleById(int id)
+        public bool deleteOrderById(int id)
         {
             _articles.RemoveAt(id);
             return true;
         }
 
-        public List<OrderModel> getAllArticles()
+        public List<OrderModel> getAllOrders()
         {
             return _articles;
         }
 
-        public OrderModel getArticleById(int id)
+        public OrderModel getOrderById(int id)
         {
             return _articles[id];
         }

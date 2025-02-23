@@ -4,9 +4,9 @@
   },
   "Routes": [
     {
-      "UpstreamPathTemplate": "/gateway/Product/getAllWriters",
+      "UpstreamPathTemplate": "/gateway/Product/getAllProducts",
       "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamPathTemplate": "/api/Product/getAllWriters",
+      "DownstreamPathTemplate": "/api/Product/getAllProducts",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -25,9 +25,9 @@
       }
     },
     {
-      "UpstreamPathTemplate": "/gateway/Product/getWriterById/{id}",
+      "UpstreamPathTemplate": "/gateway/Product/getProductById/{id}",
       "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamPathTemplate": "/api/Product/getWriterById/{id}",
+      "DownstreamPathTemplate": "/api/Product/getProductById/{id}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -37,9 +37,9 @@
       ]
     },
     {
-      "UpstreamPathTemplate": "/gateway/Product/deleteWriterById/{id}",
+      "UpstreamPathTemplate": "/gateway/Product/deleteProductById/{id}",
       "UpstreamHttpMethod": [ "Delete" ],
-      "DownstreamPathTemplate": "/api/Product/deleteWriterById/{id}",
+      "DownstreamPathTemplate": "/api/Product/deleteProductById/{id}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -49,9 +49,9 @@
       ]
     },
     {
-      "UpstreamPathTemplate": "/gateway/Order/getAllArticles",
+      "UpstreamPathTemplate": "/gateway/Order/getAllOrders",
       "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamPathTemplate": "/api/Order/getAllArticles",
+      "DownstreamPathTemplate": "/api/Order/getAllOrders",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -61,9 +61,9 @@
       ]
     },
     {
-      "UpstreamPathTemplate": "/gateway/Order/getArticleById/{id}",
+      "UpstreamPathTemplate": "/gateway/Order/getOrderById/{id}",
       "UpstreamHttpMethod": [ "Get" ],
-      "DownstreamPathTemplate": "/api/Order/getArticleById/{id}",
+      "DownstreamPathTemplate": "/api/Order/getOrderById/{id}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {

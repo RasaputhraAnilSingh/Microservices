@@ -12,22 +12,22 @@ namespace Article.Api.Controllers
         { 
             _articleRepository = articleRepository;        
         }
-        [HttpGet("getAllArticles")]
+        [HttpGet("getAllOrders")]
         public IActionResult Get()
         {
-            return Ok(_articleRepository.getAllArticles());
+            return Ok(_articleRepository.getAllOrders());
         }
 
-        [HttpGet("getArticleById/{id}")]
+        [HttpGet("getOrderById/{id}")]
         public IActionResult GetbyID(int id)
         {
-            return Ok(_articleRepository.getArticleById(id));
+            return Ok(_articleRepository.getOrderById(id));
         }
 
-        [HttpDelete("deleteArticleById/{id}")]
+        [HttpDelete("deleteOrderById/{id}")]
         public IActionResult delete(int id)
         {
-            return Ok(_articleRepository.deleteArticleById(id));
+            return Ok(_articleRepository.deleteOrderById(id));
         }
     }
 }
