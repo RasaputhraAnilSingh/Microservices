@@ -4,8 +4,8 @@ namespace Article.Api.Repository.Interface
 {
     public interface IOrderRepository
     {
-        public List<OrderModel> getAllArticles();
-        public OrderModel getArticleById(int id);
-        public bool deleteArticleById(int id);
+        public List<OrderModel> getAllOrders();
+        public OrderModel getOrderById(int id);
+        public bool deleteOrderById(int id);
     }
 }

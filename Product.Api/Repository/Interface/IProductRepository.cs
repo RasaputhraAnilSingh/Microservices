@@ -4,8 +4,8 @@ namespace Writer.Api.Repository.Interface
 {
     public interface IProductRepository
     {
-        public List<ProductModel> getAllWriter();
-        public ProductModel getWriterById(int id);
-        public bool deleteWriterById(int id);
+        public List<ProductModel> getAllProducts();
+        public ProductModel getProductById(int id);
+        public bool deleteProductById(int id);
     }
 }

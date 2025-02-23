@@ -18,18 +18,18 @@ namespace Writer.Api.Repository
             };
 
         }
-        public bool deleteWriterById(int id)
+        public bool deleteProductById(int id)
         {
             _writer.RemoveAt(id);
             return true;
         }
 
-        public List<ProductModel> getAllWriter()
+        public List<ProductModel> getAllProducts()
         {
            return _writer;
         }
 
-        public ProductModel getWriterById(int id)
+        public ProductModel getProductById(int id)
         {
             return _writer[id];
         }
