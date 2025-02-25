@@ -31,11 +31,12 @@ namespace Order.Api.Controllers
             return Ok(orders);
         }
 
-        //[HttpGet("getOrderById/{id}")]
-        //public async Task<IActionResult> GetbyID(int id)
-        //{
-        //    return Ok(await _orderRepository.GetOrderByIdAsync(id));
-        //}
+        [HttpGet("getOrderById/{id}")]
+        public async Task<IActionResult> GetbyID(int id)
+        {
+            var query = new GetOrderByIdQueries(id);
+            var orderDto = await _mediatory.Send(query); return Ok(orderDto);
+        }
 
         //[HttpDelete("deleteOrderById/{id}")]
         //public async Task<IActionResult> delete(int id)
