@@ -59,13 +59,24 @@ namespace Order.Infrastructure.Repositories
 
         }
 
+        public async Task<OrderEntity> GetOrderByIdAsync(int Id)
+        {
+            using (IDbConnection connection = new SqlConnection(_configuration.GetConnectionString("DbConnection")))
+            {
+                connection.Open();
+                var orderEntity = await connection.QueryFirstOrDefaultAsync<OrderEntity>("select * from Orders where Id = @ID", new { @ID = Id });
+                connection.Close();
+                return orderEntity;
+            }
+        }
+
         //public async Task<OrderEntity> GetOrderByIdAsync(int id)
         //{
         //    return await Task.Run(() =>
         //    {
         //        return _articles[id];
         //    });
-            
+
         //}
     }
 }
