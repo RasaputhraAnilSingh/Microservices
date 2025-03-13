@@ -38,10 +38,12 @@ namespace Order.Api.Controllers
             var orderDto = await _mediatory.Send(query); return Ok(orderDto);
         }
 
-        //[HttpDelete("deleteOrderById/{id}")]
-        //public async Task<IActionResult> delete(int id)
-        //{
-        //    return Ok(await _orderRepository.DeleteOrderByIdAsync(id));
-        //}
+        [HttpDelete("deleteOrderById/{id}")]
+        public async Task<IActionResult> delete(int id)
+        {
+
+            var command = new DeleteOrderCommand(id);
+            var result = await _mediatory.Send(command); return Ok(result);
+        }
     }
 }
