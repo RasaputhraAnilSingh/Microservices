@@ -35,7 +35,7 @@ namespace Order.Infrastructure.Repositories
             using (IDbConnection connection = new SqlConnection(_configuration.GetConnectionString("DBConnection"))) 
             {
                 connection.Open();
-                var result = await connection.QuerySingleAsync<bool>(OrderQueries.DeleteOrderById, new {@ID = id});
+                var result = await connection.QuerySingleAsync<bool>(OrderQueries.DeleteOrderById, new {@ID = id},commandType:CommandType.StoredProcedure);
                 connection.Close();
                 return result;
             }
@@ -72,13 +72,24 @@ namespace Order.Infrastructure.Repositories
             }
         }
 
-        //public async Task<OrderEntity> GetOrderByIdAsync(int id)
-        //{
-        //    return await Task.Run(() =>
-        //    {
-        //        return _articles[id];
-        //    });
+        public async Task<OrderEntity> UpdateOrderById(OrderEntity orderEntity)
+        {
+            using (IDbConnection connection = new SqlConnection(_configuration.GetConnectionString("DBConnection")))
+            {
+                connection.Open();
+                var order = new
+                {
+                    @ID = orderEntity.Id,
+                    @Name = orderEntity.Name,
+                    @Quantity = orderEntity.Quantity,
+                    @Price = orderEntity.Price
+                };
+                var result = await connection.QueryFirstOrDefaultAsync<OrderEntity>(OrderQueries.UpdateOrderById, order, commandType: CommandType.StoredProcedure);
+                connection.Close();
+                return result;
+            }
+        }
 
-        //}
+        
     }
 }
