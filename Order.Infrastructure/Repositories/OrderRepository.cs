@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Order.Infrastructure.Entities;
 using Order.Infrastructure.Repositories.Interfaces;
+using Order.Infrastructure.Sql;
 using System.Data;
 
 
@@ -22,23 +23,24 @@ namespace Order.Infrastructure.Repositories
             using (IDbConnection connection = new SqlConnection(_configuration.GetConnectionString("DBConnection")))
             {
                 connection.Open();
-                string sql = "insert into orders(Name,Quantity,Price)values(@Name,@Quantity,@Price);SELECT CAST(SCOPE_IDENTITY() as int)";
-                int orderId = await connection.QueryFirstOrDefaultAsync<int>(sql,new {order.Name,order.Quantity,order.Price});
+                int orderId = await connection.QueryFirstOrDefaultAsync<int>(OrderQueries.CreateOrder, new {order.Name,order.Quantity,order.Price});
                 connection.Close();
                 return orderId;
 
             }
         }
 
-        //public async Task<bool> DeleteOrderByIdAsync(int id)
-        //{
-        //    return await Task.Run(() =>
-        //    {
-        //        _articles.RemoveAt(id);
-        //        return true;
-        //    });
+        public async Task<bool> DeleteOrderByIdAsync(int id)
+        {
+            using (IDbConnection connection = new SqlConnection(_configuration.GetConnectionString("DBConnection"))) 
+            {
+                connection.Open();
+                var result = await connection.QuerySingleAsync<bool>(OrderQueries.DeleteOrderById, new {@ID = id});
+                connection.Close();
+                return result;
+            }
 
-        //}
+        }
 
         public async Task<IEnumerable<OrderEntity>> GetAllOrdersAsync()
         {
@@ -48,7 +50,7 @@ namespace Order.Infrastructure.Repositories
                 using (IDbConnection connection = new SqlConnection(_configuration.GetConnectionString("DbConnection")))
                 {
                     connection.Open();
-                    Orders = await connection.QueryAsync<OrderEntity>("select * from Orders");
+                    Orders = await connection.QueryAsync<OrderEntity>(OrderQueries.GetAllOrders);
                     connection.Close();
                 }
             }
@@ -64,7 +66,7 @@ namespace Order.Infrastructure.Repositories
             using (IDbConnection connection = new SqlConnection(_configuration.GetConnectionString("DbConnection")))
             {
                 connection.Open();
-                var orderEntity = await connection.QueryFirstOrDefaultAsync<OrderEntity>("select * from Orders where Id = @ID", new { @ID = Id });
+                var orderEntity = await connection.QueryFirstOrDefaultAsync<OrderEntity>(OrderQueries.GetOrderById, new { @ID = Id });
                 connection.Close();
                 return orderEntity;
             }

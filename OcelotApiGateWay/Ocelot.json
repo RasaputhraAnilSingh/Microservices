@@ -83,6 +83,18 @@
           "Port": 7245
         }
       ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Order/deleteByOrderId/{id}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "DownstreamPathTemplate": "/api/Order/deleteOrderById/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7246
+        }
+      ]
     }
   ]
 }
