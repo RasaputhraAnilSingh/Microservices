@@ -45,5 +45,14 @@ namespace Order.Api.Controllers
             var command = new DeleteOrderCommand(id);
             var result = await _mediatory.Send(command); return Ok(result);
         }
+
+        [HttpPut("updateOrderById/{id}")]
+        public async Task<IActionResult> UpdateOrderById(int id,[FromBody] UpdateDto updateDto)
+        {
+            var command = new UpdateOrderByIdCommand(id,updateDto.Name,updateDto.Quantity,updateDto.Price);
+            var result = await _mediatory.Send(command);
+            return Ok(result);
+        }
+
     }
 }
