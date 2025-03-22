@@ -1,7 +1,9 @@
 ﻿
 
+using Product.Infrastructure.MongoDB;
 using Product.Infrastructure.Repositories;
 using Product.Infrastructure.Repositories.Interfaces;
+using System.Configuration;
 
 
 namespace Order.Api
@@ -11,6 +13,7 @@ namespace Order.Api
         public static void registers(this IServiceCollection services)
         {
             services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddSingleton<MongoDbService>();
         }
     }
 }
