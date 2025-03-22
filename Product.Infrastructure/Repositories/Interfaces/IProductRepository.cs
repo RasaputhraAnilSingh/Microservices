@@ -8,5 +8,6 @@ namespace Product.Infrastructure.Repositories.Interfaces
         public Task<List<ProductEntity>> GetAllProductsAsync();
         public Task<ProductEntity> GetProductByIdAsync(int id);
         public Task<bool> DeleteProductByIdAsync(int id);
+        public Task<bool> UpdateProductById(ProductEntity product);
     }
 }
