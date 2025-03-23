@@ -75,7 +75,15 @@ namespace Product.Infrastructure.RabbitMQ
                 _message = message;
 
                 // Process the message asynchronously
-                await ProcessMessageAsync(_message);
+                try
+                {
+                    await ProcessMessageAsync(_message);
+                }
+                catch(Exception ex) 
+                {
+                    await _channel.BasicNackAsync(deliveryTag: ea.DeliveryTag, multiple: false,requeue : true);
+
+                }
                 // Acknowledge message
                 await _channel.BasicAckAsync(deliveryTag: ea.DeliveryTag, multiple: false);
             };
